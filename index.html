@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pro Booking — Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="brand">
+      <h1>Pro Booking</h1>
+      <p class="tag">Simple. Robust. Local demo.</p>
+    </div>
+    <div class="header-actions">
+      <button id="exportCsv" class="btn small">Export CSV</button>
+      <button id="clearAll" class="btn small ghost" title="Remove all bookings">Clear All</button>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <!-- LEFT: form & controls -->
+    <div class="col-left">
+      <section class="card form-card" aria-labelledby="formTitle">
+        <h2 id="formTitle">New Booking</h2>
+
+        <form id="bookingForm" novalidate>
+          <input type="hidden" id="bookingId" value="">
+
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" placeholder="e.g. Priya Kumar" required>
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" required>
+
+          <label for="service">Service</label>
+          <select id="service" required></select>
+
+          <div class="row">
+            <div class="col">
+              <label for="date">Date</label>
+              <input id="date" name="date" type="date" required>
+            </div>
+            <div class="col">
+              <label for="time">Time</label>
+              <input id="time" name="time" type="time" required>
+            </div>
+          </div>
+
+          <label for="notes">Notes (optional)</label>
+          <input id="notes" name="notes" type="text" placeholder="Any additional info">
+
+          <div class="row actions">
+            <button type="submit" class="btn">Save Booking</button>
+            <button type="button" id="cancelEdit" class="btn ghost" hidden>Cancel</button>
+          </div>
+
+          <p class="hint">Bookings have duration based on service. Conflicts are checked automatically.</p>
+        </form>
+      </section>
+
+      <section class="card filters-card" aria-labelledby="filterTitle">
+        <h2 id="filterTitle">Search & Filters</h2>
+        <div class="filter-row">
+          <input id="q" placeholder="Search name or email..." aria-label="search">
+        </div>
+        <div class="filter-row">
+          <select id="filterService">
+            <option value="">All services</option>
+          </select>
+          <select id="filterStatus">
+            <option value="">All statuses</option>
+            <option value="Pending">Pending</option>
+            <option value="Confirmed">Confirmed</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+        </div>
+        <div class="filter-row">
+          <input id="filterDate" type="date" placeholder="Date">
+          <select id="sortBy">
+            <option value="date-asc">Date ↑</option>
+            <option value="date-desc">Date ↓</option>
+          </select>
+        </div>
+        <div class="filter-row">
+          <button id="applyFilters" class="btn small">Apply</button>
+          <button id="resetFilters" class="btn small ghost">Reset</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- RIGHT: bookings -->
+    <div class="col-right">
+      <section class="card list-card" aria-labelledby="listTitle">
+        <h2 id="listTitle">Bookings (<span id="count">0</span>)</h2>
+
+        <div id="stats" class="stats">
+          <div><strong id="statConfirmed">0</strong><span>Confirmed</span></div>
+          <div><strong id="statPending">0</strong><span>Pending</span></div>
+          <div><strong id="statCancelled">0</strong><span>Cancelled</span></div>
+        </div>
+
+        <div id="bookingList" class="booking-list" aria-live="polite"></div>
+        <p id="emptyMsg" class="muted">No bookings yet — create one using the form.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <small>Pro Booking — Local demo. Data stored in browser localStorage.</small>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
