@@ -5,7 +5,7 @@ Bookings are stored in the browser using **LocalStorage**. The UI shows bookings
 
 ---
 
-## 🔗 Demo
+## 🔗 Demo (https://jayachandrapaidi.github.io/Online-booking-system/)
 > Open `index.html` in any modern browser (Chrome/Edge/Firefox) to run the app locally.  
 > No server or build step required.
 
